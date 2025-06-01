@@ -1,0 +1,1557 @@
+/* Essential Demo Styles */
+
+.mini-screen-demo {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    height: 900px;
+    margin: 30px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-family: 'Inter', sans-serif; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Spinner */
+.spinner {
+    width: 40px;
+}
+
+/* Mac Settings Title */
+.app-window #settings-view h4 {
+    color: var(--text-secondary);
+}
+
+/* --- START: macOS Notification Styles --- */
+.macos-notification {
+    position: absolute;
+    top: 45px; /* Below menu bar */
+    right: 20px;
+    width: 340px;
+    background-color: rgba(45, 45, 45, 0.85); /* Slightly darker, more opaque */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 12px;
+    display: flex;
+    padding: 12px 15px;
+    gap: 12px;
+    z-index: 100; /* Above desktop icons, below dropdown potentially */
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: #fff; /* Default text color white */
+}
+
+.macos-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.notification-icon {
+    width: 48px; /* Slightly larger icon */
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    object-fit: contain;
+    align-self: flex-start; /* Align icon to the top */
+    margin-top: 2px; /* Small adjustment */
+}
+
+.notification-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.notification-app-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.notification-time {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.notification-body {
+    /* No explicit color needed, inherits from .macos-notification */
+}
+
+.notification-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.notification-message {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.4;
+}
+
+.notification-close-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 8px; /* Space from time */
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.notification-close-btn:hover {
+    opacity: 1;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- END: macOS Notification Styles --- */
+
+/* Spinner */
+.spinner {
+    width: 40px;
+}
+
+.premium-settings-panel h4 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--text-secondary); /* Adjusted for Mac Dark Theme */
+}
+
+/* Mac Settings Title Color - Redundant rule, handled above, keeping for safety */
+.app-window:not(.phone-ui) #settings-view h4 {
+    color: var(--text-secondary); /* Use a lighter variable */
+}
+
+/* Settings Item Styles */
+.setting-item {
+    padding: 12px 16px;
+    /* Adjusted border color for Mac Dark Theme */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-item label {
+    font-size: 16px;
+    /* Adjusted text color for Mac Dark Theme */
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.remote-button.large {
+    padding: 16px 28px;
+    font-size: 18px;
+    min-width: 80px;
+    min-height: 44px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.remote-ui-dark {
+    background: #232837;
+    border-radius: 24px;
+    padding: 40px 0 32px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+.remote-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 18px;
+}
+.remote-row-top { margin-bottom: 24px; }
+.remote-row-mid { margin-bottom: 18px; gap: 48px; }
+.remote-row-tools { margin-bottom: 18px; gap: 32px; }
+.remote-row-dpad { margin-bottom: 18px; }
+.remote-row-bottom { gap: 32px; }
+
+.remote-btn-pill {
+    background: #31374a;
+    color: #e0e3ef;
+    border: none;
+    border-radius: 22px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    letter-spacing: 1px;
+    margin: 0;
+    outline: none;
+    transition: background 0.1s ease-out, color 0.1s ease-out, box-shadow 0.1s ease-out, transform 0.1s ease-out;
+    cursor: pointer;
+    min-width: 80px;
+}
+.remote-btn-pill:active {
+    background: #3d4257;
+    color: #fff;
+    transform: scale(0.97);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.remote-btn-pill:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+.remote-btn-icon {
+    padding: 14px 18px;
+    font-size: 18px;
+    min-width: 0;
+}
+.remote-btn-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    gap: 6px;
+}
+.remote-btn-label {
+    color: #e0e3ef;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 2px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.remote-btn-plus, .remote-btn-minus {
+    font-size: 22px;
+    padding: 8px 28px;
+    min-width: 60px;
+    min-height: 36px;
+}
+.dpad-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dpad-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7b5cff 0%, #4f8cff 100%);
+    box-shadow: 0 4px 16px rgba(80,80,160,0.18);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+}
+.dpad-center:active {
+    transform: translate(-50%, -50%) scale(0.95);
+    box-shadow: 0 2px 8px rgba(80,80,160,0.15);
+}
+.dpad-center:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+.dpad-arrow {
+    position: absolute;
+    background: #31374a;
+    color: #e0e3ef;
+    border: none;
+    border-radius: 16px;
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.1s ease-out, transform 0.1s ease-out;
+}
+.dpad-arrow:active {
+    background: #3d4257;
+    transform: scale(0.95);
+}
+.dpad-arrow:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 1px;
+}
+.dpad-up { left: 50%; top: 8px; transform: translateX(-50%); }
+.dpad-down { left: 50%; bottom: 8px; transform: translateX(-50%); }
+.dpad-left { left: 8px; top: 50%; transform: translateY(-50%); }
+.dpad-right { right: 8px; top: 50%; transform: translateY(-50%); }
+
+.icon-mute, .icon-enter, .icon-back {
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.connected-state p.status {
+    margin-bottom: 15px;
+    text-align: left;
+    color: var(--text-secondary);
+}
+
+/* --- END: Mini Screen Demo CSS (Moved from index.html) --- */
+
+.mini-screen-demo:hover {
+    cursor: default !important; /* Use the system default arrow cursor, force override */
+}
+
+.mini-menu-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 28px;
+    background-color: rgba(255, 255, 255, 0.15); /* Lighter background */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 10;
+}
+
+.menu-left span, .menu-right span {
+    margin: 0 6px;
+}
+
+.menu-right {
+     display: flex;
+     align-items: center;
+}
+
+.menu-left .app-menu-name {
+    font-weight: 700; /* Make app name bold */
+}
+
+/* App Window Styles - Compact size */
+.floating-ui {
+    position: absolute;
+    top: 60px; /* Below menu bar with more space */
+    left: 50%; /* Start centered, JS will handle drag offset */
+    transform: translateX(-50%) translate3d(0, 0, 0); /* Center horizontally initially + hardware acceleration */
+    width: 500px; /* Wider - increased from 420px */
+    height: 400px; /* Increased to accommodate response */
+    background-color: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px; /* More rounded */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 5; /* Higher than desktop icons */
+    padding: 0; /* Remove padding since we'll add title bar */
+    cursor: grab; /* Make entire element draggable */
+    will-change: transform; /* Optimize for drag operations */
+}
+
+.floating-ui.dragging {
+    cursor: grabbing;
+    transform: translate3d(0, 0, 0); /* Hardware acceleration during drag */
+}
+
+/* App Title Bar */
+.app-title-bar {
+    height: 32px;
+    background: rgba(40, 40, 40, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: grab;
+}
+
+.app-title {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Remove old app-window, app-title-bar, window-controls, app-title, app-body styles */
+.app-window,
+.window-controls,
+.app-body {
+    display: none;
+}
+
+/* Sidebar positioning - bigger and simplified */
+.sidebar {
+    width: 100%;
+    background: none; /* Remove background since floating-ui has it */
+    border-radius: 0; /* Remove border radius since floating-ui has it */
+    padding: 20px; /* Add padding back for content */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Bigger gap */
+    backdrop-filter: none; /* Remove since floating-ui has it */
+    border: none; /* Remove border since floating-ui has it */
+    flex: 1;
+    overflow-y: auto; /* Allow scrolling if content is too long */
+}
+
+.sidebar-input-container {
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.sidebar-input {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border: 2px solid;
+    border-image: linear-gradient(135deg, #3b82f6 0%, #10b981 100%) 1;
+    border-radius: 50px;
+    padding: 16px 60px 16px 20px; /* Bigger padding */
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 16px; /* Bigger font */
+    font-weight: 500;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    cursor: text;
+}
+
+.sidebar-input[readonly] {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%);
+    color: rgba(255, 255, 255, 0.95);
+    border-image: linear-gradient(135deg, #3b82f6 0%, #10b981 100%) 1;
+    font-weight: 500;
+    cursor: default;
+}
+
+.sidebar-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-input:focus {
+    border-image: linear-gradient(135deg, #60a5fa 0%, #34d399 100%) 1;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
+}
+
+.sidebar-input-btn {
+    position: absolute;
+    right: 10px; /* Bigger spacing */
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 40px; /* Bigger button */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sidebar-input-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.sidebar-input-btn svg {
+    width: 20px; /* Bigger icon */
+    height: 20px;
+}
+
+/* Response Area Styles */
+.response-area {
+    flex: 1;
+    background: rgba(20, 20, 20, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-y: auto;
+    max-height: 280px;
+}
+
+.response-content {
+    padding: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.response-content p {
+    margin: 0 0 12px 0;
+}
+
+.response-content p:last-child {
+    margin-bottom: 0;
+}
+
+.response-content strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+/* Scrollbar for response area */
+.response-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.response-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.response-area::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.response-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Desktop Icon Styles */
+.desktop-icons {
+    position: absolute;
+    top: 28px; /* Below menu bar */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 28px);
+    z-index: 1; /* Behind app window */
+    pointer-events: none; /* Allow clicks to go through */
+    padding: 20px; /* Add some padding */
+    box-sizing: border-box;
+}
+.desktop-icon {
+    position: absolute;
+    width: 70px;
+    text-align: center;
+    cursor: default; /* Keep default cursor from :hover */
+}
+.desktop-icon .icon-visual {
+    font-size: 40px; /* Adjust size of emoji/icon */
+    line-height: 1;
+    margin-bottom: 5px;
+     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.desktop-icon span {
+    font-size: 11px;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    display: block;
+    word-wrap: break-word;
+    background-color: rgba(0,0,0,0.2); /* Slight background for readability */
+    padding: 1px 3px;
+    border-radius: 3px;
+}
+
+/* --- Simulation Styles --- */
+body.dark-mode-simulated {
+    filter: invert(1) hue-rotate(180deg);
+    background-color: #111; /* Ensure background stays dark */
+}
+/* Optional: Exclude the demo itself if inversion looks weird */
+body.dark-mode-simulated .mini-screen-demo {
+     filter: invert(1) hue-rotate(180deg);
+}
+/* --- End Simulation Styles --- */
+
+/* Browser Window Styles */
+.browser-window {
+    position: absolute;
+    top: 80px;
+    left: 60%;
+    transform: translateX(-50%) translate3d(0, 0, 0);
+    width: 700px;
+    height: 600px;
+    background-color: rgba(40, 40, 40, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 4;
+    cursor: grab;
+    will-change: transform; /* Optimize for drag operations */
+}
+
+.browser-window.dragging {
+    cursor: grabbing;
+    transform: translate3d(0, 0, 0); /* Hardware acceleration during drag */
+}
+
+/* Browser Header */
+.browser-header {
+    height: 40px;
+    background: rgba(50, 50, 50, 0.9);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.browser-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.browser-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.browser-btn.close {
+    background: #ff5f57;
+}
+
+.browser-btn.minimize {
+    background: #ffbd2e;
+}
+
+.browser-btn.maximize {
+    background: #28ca42;
+}
+
+.browser-btn:hover {
+    opacity: 0.8;
+}
+
+.browser-address-bar {
+    flex: 1;
+    margin: 0 16px;
+    background: rgba(60, 60, 60, 0.8);
+    border-radius: 6px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.address-bar-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+}
+
+.secure-icon {
+    font-size: 12px;
+}
+
+.url {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.browser-menu {
+    display: flex;
+    align-items: center;
+}
+
+.browser-menu-btn {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.browser-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Browser Content */
+.browser-content {
+    flex: 1;
+    background: #212121;
+    overflow: hidden;
+}
+
+/* ChatGPT Interface */
+.chatgpt-interface {
+    display: flex;
+    height: 100%;
+    background: #212121;
+}
+
+/* ChatGPT Sidebar */
+.chatgpt-sidebar {
+    width: 260px;
+    background: #171717;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.chatgpt-sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.new-chat-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.new-chat-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.new-chat-btn svg {
+    flex-shrink: 0;
+}
+
+/* Chat History */
+.chat-history {
+    flex: 1;
+    padding: 8px;
+    overflow-y: auto;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 2px;
+}
+
+.chat-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.chat-item.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.chat-title {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-menu {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 0.2s;
+}
+
+.chat-item:hover .chat-menu {
+    opacity: 1;
+}
+
+.chat-menu:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Sidebar Footer */
+.chatgpt-sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.user-profile:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.user-name {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ChatGPT Main Area */
+.chatgpt-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #212121;
+}
+
+/* Chat Messages */
+.chat-messages {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.message {
+    display: flex;
+    gap: 16px;
+    max-width: 100%;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.user-message .message-content {
+    background: #2f2f2f;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 16px 20px;
+    border-radius: 18px;
+    border-bottom-right-radius: 4px;
+    max-width: 70%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.assistant-message {
+    align-items: flex-start;
+}
+
+.message-avatar {
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.chatgpt-logo {
+    width: 32px;
+    height: 32px;
+    background: #10a37f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.assistant-message .message-content {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: calc(100% - 48px);
+    line-height: 1.6;
+}
+
+.message-content p {
+    margin: 0 0 12px 0;
+}
+
+.message-content p:last-child {
+    margin-bottom: 0;
+}
+
+.message-content h3 {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 16px 0 8px 0;
+}
+
+.message-content ul {
+    margin: 8px 0 16px 0;
+    padding-left: 20px;
+}
+
+.message-content li {
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.message-content strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+/* Chat Input */
+.chat-input-container {
+    padding: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: #212121;
+}
+
+.chat-input-wrapper {
+    position: relative;
+    background: #2f2f2f;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: flex-end;
+    padding: 12px 16px;
+    transition: border-color 0.2s;
+}
+
+.chat-input-wrapper:focus-within {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.chat-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+    max-height: 120px;
+    min-height: 24px;
+    font-family: inherit;
+}
+
+.chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.send-btn {
+    background: #10a37f;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+.send-btn:hover {
+    background: #0d8f6f;
+    transform: scale(1.05);
+}
+
+.send-btn:active {
+    transform: scale(0.95);
+}
+
+/* Scrollbar Styling */
+.chat-history::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-history::-webkit-scrollbar-track,
+.chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-history::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.chat-history::-webkit-scrollbar-thumb:hover,
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive adjustments for browser window */
+@media (max-width: 1400px) {
+    .browser-window {
+        width: 600px;
+        height: 500px;
+        left: 55%;
+    }
+    
+    .chatgpt-sidebar {
+        width: 220px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .browser-window {
+        width: 500px;
+        height: 450px;
+        left: 50%;
+    }
+    
+    .chatgpt-sidebar {
+        width: 180px;
+    }
+    
+    .new-chat-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .chat-messages {
+        padding: 16px;
+        gap: 16px;
+    }
+    
+    .message-content h3 {
+        font-size: 15px;
+    }
+    
+    .message-content {
+        font-size: 14px;
+    }
+}
+
+/* Remove old sidebar button styles */
+.sidebar-buttons,
+.sidebar-btn,
+.history-btn,
+.unpin-btn,
+.settings-btn,
+.help-btn,
+.dropdown-arrow,
+.view-panel,
+.content-area,
+.prompt-interface,
+.prompt-workspace,
+.prompt-input-section,
+.prompt-output-section,
+.input-header,
+.output-header,
+.input-actions,
+.output-actions,
+.action-btn,
+.prompt-input-container,
+.prompt-output-container,
+.prompt-input,
+.output-content,
+.response-text,
+.response-stats,
+.stat,
+.settings-view,
+.premium-settings-panel,
+.setting-item,
+.slider-item,
+.slider-container,
+.slider-value,
+.toggle-switch,
+.service-menu-button,
+.connecting-state,
+.pin-unpin-container,
+.pin-btn {
+    display: none;
+}
+
+/* Tutorial overlay - only covers the demo area */
+.tutorial-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.1); /* Very subtle overlay */
+    pointer-events: none; /* Allow clicks to pass through */
+    z-index: 1000;
+    transform: translate3d(0, 0, 0); /* Hardware acceleration */
+    will-change: opacity, background-color; /* Optimize for animations */
+}
+
+.tutorial-overlay.interactive {
+    pointer-events: auto; /* Block clicks when showing tutorial steps */
+    background: rgba(0, 0, 0, 0.2); /* Slightly more visible when interactive */
+}
+
+/* Blur effect for demo elements only */
+.mini-screen-demo.tutorial-active {
+    position: relative;
+}
+
+.mini-screen-demo.tutorial-active > *:not(.tutorial-spotlight):not(.tutorial-overlay) {
+    filter: blur(1.5px) brightness(0.5);
+    pointer-events: none;
+    transition: filter 0.3s ease;
+}
+
+/* Spotlight effect for target element */
+.tutorial-spotlight {
+    position: relative;
+    z-index: 1001;
+    filter: none !important;
+    pointer-events: auto !important;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.6), 0 0 0 9999px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Specific spotlight for interactive elements */
+.tutorial-spotlight-input {
+    position: relative;
+    z-index: 1002;
+    filter: none !important;
+    pointer-events: auto !important;
+}
+
+.tutorial-spotlight-input::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 3px solid #007AFF;
+    border-radius: 8px;
+    animation: tutorialPulse 2s infinite;
+    z-index: -1;
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.5);
+}
+
+/* Remove old blur classes */
+.tutorial-blur {
+    /* This class is no longer used */
+}
+
+.tutorial-step {
+    position: absolute;
+    /* Increase brightness to match spotlight elements */
+    background: rgba(25, 25, 25, 0.98);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 450px;
+    min-width: 350px;
+    border: 2px solid rgba(0, 122, 255, 0.4);
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    animation: tutorialFadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    z-index: 1003;
+    pointer-events: auto;
+    /* Add brightness filter to match spotlight elements */
+    filter: brightness(1.2);
+    transform: translate3d(0, 0, 0); /* Hardware acceleration */
+    will-change: transform, opacity; /* Optimize for animations */
+}
+
+/* Position tutorial steps relative to target elements */
+.tutorial-step.step-chatgpt {
+    top: 2%;
+    left: 1%;
+}
+
+.tutorial-step.step-prompt-master {
+    top: 2%;
+    right: 1%;
+}
+
+.tutorial-step.step-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes tutorialFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.tutorial-content h3 {
+    color: rgba(255, 255, 255, 0.98);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tutorial-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 24px 0;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.tutorial-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 16px solid transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.tutorial-arrow-left {
+    left: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: rgba(20, 20, 20, 0.98);
+}
+
+.tutorial-arrow-right {
+    right: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: rgba(20, 20, 20, 0.98);
+}
+
+.copy-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%);
+    color: #333333;
+    border: 1px solid #c0c0c0;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 auto;
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+}
+
+.copy-button:hover {
+    background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 50%, #d8d8d8 100%);
+    border-color: #a0a0a0;
+    transform: translateY(-0.5px);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.copy-button:active {
+    background: linear-gradient(180deg, #e0e0e0 0%, #d0d0d0 50%, #c8c8c8 100%);
+    border-color: #999999;
+    transform: translateY(0);
+    box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.copy-button svg {
+    flex-shrink: 0;
+    stroke: #333333;
+}
+
+.copy-instruction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+.copy-instruction kbd {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.2) 0%, rgba(50, 200, 50, 0.2) 100%);
+    border: 2px solid rgba(0, 122, 255, 0.4);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.98);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.tutorial-restart {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.15) 0%, rgba(50, 200, 50, 0.15) 100%);
+    color: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 122, 255, 0.3);
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tutorial-restart:hover {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.25) 0%, rgba(50, 200, 50, 0.25) 100%);
+    border-color: rgba(0, 122, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.tutorial-highlight {
+    position: absolute;
+    pointer-events: none;
+    border: 3px solid #007AFF;
+    border-radius: 16px;
+    animation: tutorialPulse 2s infinite;
+    z-index: 999;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes tutorialPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+/* Selection highlight for text */
+.text-selected {
+    /* Remove blue background, keep only visual selection indicators */
+    background: transparent !important;
+    color: white !important;
+    border-radius: 4px;
+    /* Add a subtle border instead of background */
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.6) !important;
+    animation: selectionBlink 1s infinite alternate;
+}
+
+@keyframes selectionBlink {
+    0% {
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.8);
+    }
+}
+
+/* Disabled send button during tutorial */
+.send-btn.tutorial-disabled {
+    background: #666666 !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+}
+
+.send-btn.tutorial-disabled:hover {
+    background: #666666 !important;
+    transform: none !important;
+}
+
+/* Disabled ChatGPT input during tutorial */
+.chat-input.tutorial-disabled {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+.chat-input.tutorial-disabled:focus {
+    outline: none !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Disabled ChatGPT input wrapper during tutorial */
+.chat-input-wrapper.tutorial-disabled {
+    opacity: 0.7 !important;
+    pointer-events: none !important;
+}
+
+.chat-input-wrapper.tutorial-disabled:focus-within {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Disabled Prompt Master input during tutorial */
+.sidebar-input.tutorial-disabled {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+.sidebar-input.tutorial-disabled:focus {
+    outline: none !important;
+    border-image: linear-gradient(135deg, #3b82f6 0%, #10b981 100%) 1 !important;
+}
+
+/* Ensure arrow button stays in position during tutorial */
+.sidebar-input-container.tutorial-active .sidebar-input-btn {
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 1003 !important;
+}
+
+/* Perfect alert overlay */
+.perfect-alert-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.perfect-alert-overlay.show {
+    opacity: 1;
+}
+
+.perfect-alert {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.15) 0%, rgba(50, 200, 50, 0.15) 100%);
+    border: 2px solid rgba(0, 122, 255, 0.4);
+    border-radius: 20px;
+    padding: 40px 60px;
+    text-align: center;
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    filter: brightness(1.2);
+}
+
+.perfect-alert h2 {
+    color: rgba(255, 255, 255, 0.98);
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.perfect-alert p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0 0 24px 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.perfect-alert button {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.25) 0%, rgba(50, 200, 50, 0.25) 100%);
+    color: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 122, 255, 0.3);
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.perfect-alert button:hover {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.35) 0%, rgba(50, 200, 50, 0.35) 100%);
+    border-color: rgba(0, 122, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}

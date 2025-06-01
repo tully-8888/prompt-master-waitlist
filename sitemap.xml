@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>[Your_Full_Domain_URL]/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="[Your_Full_Domain_URL]/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="[Your_Full_Domain_URL]/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="[Your_Full_Domain_URL]/?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="[Your_Full_Domain_URL]/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="[Your_Full_Domain_URL]/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="[Your_Full_Domain_URL]/?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="[Your_Full_Domain_URL]/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="[Your_Full_Domain_URL]/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="[Your_Full_Domain_URL]/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="[Your_Full_Domain_URL]/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="[Your_Full_Domain_URL]/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="[Your_Full_Domain_URL]/?lang=en"/>
+    <!-- <lastmod>YYYY-MM-DD</lastmod> -->
+  </url>
+</urlset> 
