@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 return {
                     email,
-                    waitlist_id: 28097,
+                    waitlist_id: 28935,
                     first_name: firstName,
                     last_name: lastName,
                     referral_link: window.location.href,
