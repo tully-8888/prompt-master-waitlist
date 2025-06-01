@@ -7,7 +7,7 @@
     height: 900px;
     margin: 30px auto;
     border-radius: 12px;
-    overflow: hidden;
+    overflow: visible; /* Allow tutorial steps to appear outside */
     background-color: #000;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     font-family: 'Inter', sans-serif; 
@@ -1078,6 +1078,40 @@ body.dark-mode-simulated .mini-screen-demo {
     .message-content {
         font-size: 14px;
     }
+    
+    /* Adjust tutorial step positioning for smaller screens */
+    .tutorial-step.step-1,
+    .tutorial-step.step-5,
+    .tutorial-step.step-6 {
+        left: -380px; /* Closer to demo on smaller screens */
+    }
+    
+    .tutorial-step.step-2,
+    .tutorial-step.step-3,
+    .tutorial-step.step-4 {
+        right: -380px; /* Closer to demo on smaller screens */
+    }
+    
+    .tutorial-step {
+        max-width: 350px;
+        min-width: 300px;
+        padding: 24px;
+    }
+}
+
+/* Additional responsive adjustments for very large screens */
+@media (min-width: 1600px) {
+    .tutorial-step.step-1,
+    .tutorial-step.step-5,
+    .tutorial-step.step-6 {
+        left: -520px; /* Further from demo on larger screens */
+    }
+    
+    .tutorial-step.step-2,
+    .tutorial-step.step-3,
+    .tutorial-step.step-4 {
+        right: -520px; /* Further from demo on larger screens */
+    }
 }
 
 /* Remove old sidebar button styles */
@@ -1147,7 +1181,7 @@ body.dark-mode-simulated .mini-screen-demo {
     position: relative;
 }
 
-.mini-screen-demo.tutorial-active > *:not(.tutorial-spotlight):not(.tutorial-overlay) {
+.mini-screen-demo.tutorial-active > *:not(.tutorial-spotlight):not(.tutorial-overlay):not(.tutorial-step) {
     filter: blur(1.5px) brightness(0.5);
     pointer-events: none;
     transition: filter 0.3s ease;
@@ -1195,39 +1229,86 @@ body.dark-mode-simulated .mini-screen-demo {
 }
 
 .tutorial-step {
-    /* Enhanced background for better visibility and shine */
-    background: rgba(40, 50, 70, 0.92); /* lighter, bluish tint for vibrancy */
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    position: absolute;
+    /* Enhanced background for better visibility and shine - SAME AS UI ELEMENTS */
+    background: rgba(40, 50, 70, 0.95); /* More opaque for better visibility */
+    backdrop-filter: blur(35px) saturate(200%);
+    -webkit-backdrop-filter: blur(35px) saturate(200%);
     border-radius: 20px;
     padding: 32px;
     max-width: 450px;
     min-width: 350px;
-    border: 3px solid rgba(0, 122, 255, 0.9); /* brighter border */
+    border: 3px solid rgba(0, 122, 255, 1.0); /* Full opacity border */
     box-shadow:
-        0 8px 32px 0 rgba(0, 122, 255, 0.25), /* blue glow */
-        0 2px 16px 0 rgba(255,255,255,0.10),   /* white glow */
+        0 8px 32px 0 rgba(0, 122, 255, 0.35), /* stronger blue glow */
+        0 2px 16px 0 rgba(255,255,255,0.15),   /* stronger white glow */
         0 25px 80px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(255, 255, 255, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        0 0 30px rgba(0, 122, 255, 0.4);
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 40px rgba(0, 122, 255, 0.6); /* stronger outer glow */
     animation: tutorialFadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    z-index: 1003;
+    z-index: 1004; /* Higher than spotlight to ensure visibility */
     pointer-events: auto;
-    filter: brightness(1.35) saturate(1.15) !important; /* more shine */
+    /* SAME BRIGHTNESS AS SPOTLIGHT ELEMENTS */
+    filter: brightness(1.4) saturate(1.2) !important; /* Enhanced brightness to match UI */
     transform: translate3d(0, 0, 0); /* Hardware acceleration */
     will-change: transform, opacity; /* Optimize for animations */
 }
 
-/* Position tutorial steps relative to target elements */
+/* Position tutorial steps to left/right of demo elements, not above/under */
+.tutorial-step.step-1 {
+    top: 20%;
+    left: -480px; /* Position to the left of the demo */
+    transform: translateY(-50%);
+}
+
+.tutorial-step.step-2 {
+    top: 40%;
+    right: -480px; /* Position to the right of the demo */
+    transform: translateY(-50%);
+}
+
+.tutorial-step.step-3 {
+    top: 60%;
+    right: -480px; /* Position to the right of the demo */
+    transform: translateY(-50%);
+}
+
+.tutorial-step.step-4 {
+    top: 50%;
+    right: -480px; /* Position to the right of the demo */
+    transform: translateY(-50%);
+}
+
+.tutorial-step.step-5 {
+    top: 30%;
+    left: -480px; /* Position to the left of the demo */
+    transform: translateY(-50%);
+}
+
+.tutorial-step.step-6 {
+    top: 50%;
+    left: -480px; /* Position to the left of the demo */
+    transform: translateY(-50%);
+}
+
+.tutorial-step.step-7 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center for final step */
+}
+
+/* Legacy positioning classes - keeping for compatibility */
 .tutorial-step.step-chatgpt {
-    top: 2%;
-    left: 1%;
+    top: 20%;
+    left: -480px;
+    transform: translateY(-50%);
 }
 
 .tutorial-step.step-prompt-master {
-    top: 2%;
-    right: 1%;
+    top: 40%;
+    right: -480px;
+    transform: translateY(-50%);
 }
 
 .tutorial-step.step-center {
@@ -1277,14 +1358,34 @@ body.dark-mode-simulated .mini-screen-demo {
     left: -32px;
     top: 50%;
     transform: translateY(-50%);
-    border-right-color: rgba(20, 20, 20, 0.98);
+    border-right-color: rgba(40, 50, 70, 0.95);
 }
 
 .tutorial-arrow-right {
     right: -32px;
     top: 50%;
     transform: translateY(-50%);
-    border-left-color: rgba(20, 20, 20, 0.98);
+    border-left-color: rgba(40, 50, 70, 0.95);
+}
+
+/* For steps positioned to the left, arrow should point right (toward demo) */
+.tutorial-step.step-1 .tutorial-arrow,
+.tutorial-step.step-5 .tutorial-arrow,
+.tutorial-step.step-6 .tutorial-arrow {
+    right: -32px;
+    left: auto;
+    border-left-color: rgba(40, 50, 70, 0.95);
+    border-right-color: transparent;
+}
+
+/* For steps positioned to the right, arrow should point left (toward demo) */
+.tutorial-step.step-2 .tutorial-arrow,
+.tutorial-step.step-3 .tutorial-arrow,
+.tutorial-step.step-4 .tutorial-arrow {
+    left: -32px;
+    right: auto;
+    border-right-color: rgba(40, 50, 70, 0.95);
+    border-left-color: transparent;
 }
 
 .copy-button {
