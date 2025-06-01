@@ -1079,17 +1079,17 @@ body.dark-mode-simulated .mini-screen-demo {
         font-size: 14px;
     }
     
-    /* Adjust tutorial step positioning for smaller screens */
+    /* Adjust tutorial step positioning for smaller screens - maintain spacing to avoid overlap */
     .tutorial-step.step-1,
     .tutorial-step.step-5,
     .tutorial-step.step-6 {
-        left: -380px; /* Closer to demo on smaller screens */
+        left: -420px; /* Closer to demo on smaller screens but still safe */
     }
     
     .tutorial-step.step-2,
     .tutorial-step.step-3,
     .tutorial-step.step-4 {
-        right: -380px; /* Closer to demo on smaller screens */
+        right: -420px; /* Closer to demo on smaller screens but still safe */
     }
     
     .tutorial-step {
@@ -1104,13 +1104,13 @@ body.dark-mode-simulated .mini-screen-demo {
     .tutorial-step.step-1,
     .tutorial-step.step-5,
     .tutorial-step.step-6 {
-        left: -520px; /* Further from demo on larger screens */
+        left: -580px; /* Even further from demo on larger screens */
     }
     
     .tutorial-step.step-2,
     .tutorial-step.step-3,
     .tutorial-step.step-4 {
-        right: -520px; /* Further from demo on larger screens */
+        right: -580px; /* Even further from demo on larger screens */
     }
 }
 
@@ -1176,6 +1176,13 @@ body.dark-mode-simulated .mini-screen-demo {
     background: rgba(0, 0, 0, 0.2); /* Slightly more visible when interactive */
 }
 
+/* Ensure tutorial steps are never affected by dimming/blurring */
+.tutorial-overlay .tutorial-step {
+    filter: brightness(1.2) saturate(1.1) !important; /* Match spotlight brightness exactly */
+    backdrop-filter: none !important; /* Remove any backdrop filters that might dim */
+    opacity: 1 !important; /* Ensure full opacity */
+}
+
 /* Blur effect for demo elements only */
 .mini-screen-demo.tutorial-active {
     position: relative;
@@ -1185,6 +1192,15 @@ body.dark-mode-simulated .mini-screen-demo {
     filter: blur(1.5px) brightness(0.5);
     pointer-events: none;
     transition: filter 0.3s ease;
+}
+
+/* Ensure tutorial steps are completely immune to any dimming effects */
+.mini-screen-demo.tutorial-active .tutorial-step {
+    filter: brightness(1.2) saturate(1.1) !important; /* Force same brightness as spotlight */
+    backdrop-filter: blur(35px) saturate(200%) !important; /* Maintain backdrop effect */
+    opacity: 1 !important; /* Force full opacity */
+    pointer-events: auto !important; /* Ensure interactivity */
+    z-index: 1005 !important; /* Ensure highest priority */
 }
 
 /* Spotlight effect for target element */
@@ -1247,48 +1263,48 @@ body.dark-mode-simulated .mini-screen-demo {
         inset 0 1px 0 rgba(255, 255, 255, 0.4),
         0 0 40px rgba(0, 122, 255, 0.6); /* stronger outer glow */
     animation: tutorialFadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    z-index: 1004; /* Higher than spotlight to ensure visibility */
+    z-index: 1005; /* Even higher to ensure visibility above everything */
     pointer-events: auto;
-    /* SAME BRIGHTNESS AS SPOTLIGHT ELEMENTS */
-    filter: brightness(1.4) saturate(1.2) !important; /* Enhanced brightness to match UI */
+    /* EXACT SAME BRIGHTNESS AS SPOTLIGHT ELEMENTS */
+    filter: brightness(1.2) saturate(1.1) !important; /* Match spotlight exactly */
     transform: translate3d(0, 0, 0); /* Hardware acceleration */
     will-change: transform, opacity; /* Optimize for animations */
 }
 
-/* Position tutorial steps to left/right of demo elements, not above/under */
+/* Position tutorial steps to left/right of demo elements with better spacing to avoid overlap */
 .tutorial-step.step-1 {
-    top: 20%;
-    left: -480px; /* Position to the left of the demo */
+    top: 15%; /* Adjusted to align with ChatGPT window */
+    left: -520px; /* Further left to avoid overlap with demo */
     transform: translateY(-50%);
 }
 
 .tutorial-step.step-2 {
-    top: 40%;
-    right: -480px; /* Position to the right of the demo */
+    top: 25%; /* Adjusted to align with Prompt Master window */
+    right: -520px; /* Further right to avoid overlap with demo */
     transform: translateY(-50%);
 }
 
 .tutorial-step.step-3 {
-    top: 60%;
-    right: -480px; /* Position to the right of the demo */
+    top: 45%; /* Adjusted for better spacing */
+    right: -520px; /* Further right to avoid overlap with demo */
     transform: translateY(-50%);
 }
 
 .tutorial-step.step-4 {
-    top: 50%;
-    right: -480px; /* Position to the right of the demo */
+    top: 35%; /* Adjusted for better spacing */
+    right: -520px; /* Further right to avoid overlap with demo */
     transform: translateY(-50%);
 }
 
 .tutorial-step.step-5 {
-    top: 30%;
-    left: -480px; /* Position to the left of the demo */
+    top: 55%; /* Adjusted to align with ChatGPT input */
+    left: -520px; /* Further left to avoid overlap with demo */
     transform: translateY(-50%);
 }
 
 .tutorial-step.step-6 {
-    top: 50%;
-    left: -480px; /* Position to the left of the demo */
+    top: 65%; /* Adjusted for send button area */
+    left: -520px; /* Further left to avoid overlap with demo */
     transform: translateY(-50%);
 }
 
@@ -1301,13 +1317,13 @@ body.dark-mode-simulated .mini-screen-demo {
 /* Legacy positioning classes - keeping for compatibility */
 .tutorial-step.step-chatgpt {
     top: 20%;
-    left: -480px;
+    left: -520px;
     transform: translateY(-50%);
 }
 
 .tutorial-step.step-prompt-master {
     top: 40%;
-    right: -480px;
+    right: -520px;
     transform: translateY(-50%);
 }
 
@@ -1315,6 +1331,15 @@ body.dark-mode-simulated .mini-screen-demo {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* Additional brightness enforcement for all tutorial step states */
+.tutorial-step,
+.tutorial-step.show,
+.tutorial-step:not(.hidden) {
+    filter: brightness(1.2) saturate(1.1) !important;
+    opacity: 1 !important;
+    z-index: 1005 !important;
 }
 
 @keyframes tutorialFadeIn {
