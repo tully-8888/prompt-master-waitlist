@@ -237,7 +237,7 @@ main {
     position: relative;
     overflow: hidden;
     min-height: 80vh;
-    padding: 40px 40px 0 40px;
+    padding: 32px 32px 0 32px;
 }
 
 /* Enhanced Glassmorphic Sci-Fi Background */
@@ -623,24 +623,25 @@ h1 {
     font-size: 16px;
     margin-bottom: 48px;
     border-radius: 24px;
-    background: linear-gradient(135deg, #007AFF 0%, #32C832 50%, #FF6B35 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     box-shadow: 
-        0 8px 32px rgba(0, 122, 255, 0.3),
+        0 8px 32px rgba(0, 0, 0, 0.3),
         0 2px 8px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .main-join-btn:hover {
     transform: translateY(-2px) scale(1.02);
+    background: linear-gradient(135deg, #2d2d2d 0%, #404040 50%, #2d2d2d 100%);
     box-shadow: 
-        0 12px 40px rgba(0, 122, 255, 0.4),
+        0 12px 40px rgba(0, 0, 0, 0.4),
         0 4px 12px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    filter: brightness(1.1) saturate(1.1);
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .video-container {
@@ -794,22 +795,23 @@ footer .logo:hover {
 
 footer .join-btn {
     flex-shrink: 0;
-    background: linear-gradient(135deg, #007AFF 0%, #32C832 50%, #FF6B35 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     box-shadow: 
-        0 4px 16px rgba(0, 122, 255, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 footer .join-btn:hover {
     transform: translateY(-1px) scale(1.02);
+    background: linear-gradient(135deg, #2d2d2d 0%, #404040 50%, #2d2d2d 100%);
     box-shadow: 
-        0 6px 20px rgba(0, 122, 255, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    filter: brightness(1.1) saturate(1.1);
+        0 6px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Mobile stacked layout */
@@ -2199,7 +2201,7 @@ header {
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 40px;
+  padding: 8px 32px;
 }
 .main-header .logo {
   margin-right: 0;
@@ -2209,14 +2211,6 @@ header {
   flex-direction: row;
   align-items: center;
   margin-left: auto;
-  gap: 8px;
-}
-.main-header .language-selector {
-  order: 1;
-}
-.main-header .join-btn {
-  order: 2;
-  margin-left: 0;
 }
 
 
@@ -2224,7 +2218,7 @@ header {
 @media (max-width: 768px) {
     main {
         min-height: 70vh;
-        padding: 20px 16px 0 16px;
+        padding: 16px 16px 0 16px;
     }
     
     /* Reduce complexity on mobile for better performance */
@@ -2269,7 +2263,7 @@ header {
 @media (max-width: 480px) {
     main {
         min-height: 60vh;
-        padding: 16px 12px 0 12px;
+        padding: 12px 12px 0 12px;
     }
     
     /* Further reduce particles on small screens */
@@ -2374,7 +2368,7 @@ header {
 
 /* Enhanced Join Button Base Styles */
 .join-btn {
-    background: linear-gradient(135deg, #007AFF 0%, #32C832 50%, #FF6B35 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     color: #FFFFFF;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -2387,16 +2381,17 @@ header {
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     box-shadow: 
-        0 4px 16px rgba(0, 122, 255, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .join-btn:hover {
     transform: translateY(-1px) scale(1.02);
+    background: linear-gradient(135deg, #2d2d2d 0%, #404040 50%, #2d2d2d 100%);
     box-shadow: 
-        0 6px 20px rgba(0, 122, 255, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    filter: brightness(1.1) saturate(1.1);
+        0 6px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Main Content with proper padding */
@@ -2412,5 +2407,5 @@ main {
     position: relative;
     overflow: hidden;
     min-height: 80vh;
-    padding: 40px 40px 0 40px;
+    padding: 32px 32px 0 32px;
 }
