@@ -5,25 +5,250 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Constants
     const DRAGGABLE_OVERFLOW_MARGIN = 50; // Allow window to be dragged 50px outside these bounds
 
-    // Ultra-high-performance monitoring for 120 FPS targeting
-    if ('PerformanceObserver' in window) {
-        try {
-            const performanceObserver = new PerformanceObserver((list) => {
-                for (const entry of list.getEntries()) {
-                    if (entry.entryType === 'long-task' && entry.duration > 8.33) { // 120 FPS = 8.33ms budget
-                        console.warn(`Long task detected: ${entry.duration}ms - exceeds 120 FPS budget`);
+    // PERFORMANCE MONITORING & OPTIMIZATION
+    class PerformanceManager {
+        constructor() {
+            this.frameDropCount = 0;
+            this.performanceMode = 'normal'; // normal, reduced, minimal
+            this.isMonitoring = false;
+            this.animationElements = [];
+            this.intersectionObserver = null;
+            this.performanceObserver = null;
+            this.lastFrameTime = performance.now();
+            this.frameCount = 0;
+            this.fps = 60;
+            
+            this.init();
+        }
+
+        init() {
+            this.detectDeviceCapabilities();
+            this.setupPerformanceMonitoring();
+            this.setupIntersectionObserver();
+            this.setupReducedMotionDetection();
+            this.cacheAnimationElements();
+            this.startMonitoring();
+        }
+
+        detectDeviceCapabilities() {
+            // Detect device capabilities and set initial performance mode
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isLowEndDevice = navigator.hardwareConcurrency <= 2;
+            const hasLimitedMemory = navigator.deviceMemory && navigator.deviceMemory <= 2;
+            
+            if (isMobile || isLowEndDevice || hasLimitedMemory) {
+                this.setPerformanceMode('reduced');
+            }
+            
+            // Check for battery API
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(battery => {
+                    if (battery.level < 0.2 || battery.charging === false) {
+                        this.setPerformanceMode('minimal');
+                    }
+                });
+            }
+        }
+
+        setupPerformanceMonitoring() {
+            // Modern Performance Observer for long tasks
+            if ('PerformanceObserver' in window && PerformanceObserver.supportedEntryTypes.includes('long-task')) {
+                this.performanceObserver = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        if (entry.duration > 16.67) { // 60 FPS = 16.67ms budget
+                            this.frameDropCount++;
+                            if (this.frameDropCount > 10) {
+                                this.degradePerformance();
+                            }
+                        }
+                    }
+                });
+                
+                try {
+                    this.performanceObserver.observe({ entryTypes: ['long-task'] });
+                } catch (error) {
+                    console.log('Long task monitoring not supported');
+                }
+            }
+
+            // FPS monitoring fallback
+            this.monitorFPS();
+        }
+
+        monitorFPS() {
+            const measureFPS = (currentTime) => {
+                this.frameCount++;
+                const deltaTime = currentTime - this.lastFrameTime;
+                
+                if (deltaTime >= 1000) { // Calculate FPS every second
+                    this.fps = Math.round((this.frameCount * 1000) / deltaTime);
+                    this.frameCount = 0;
+                    this.lastFrameTime = currentTime;
+                    
+                    // Auto-degrade if FPS is consistently low
+                    if (this.fps < 30 && this.performanceMode === 'normal') {
+                        this.setPerformanceMode('reduced');
+                    } else if (this.fps < 15 && this.performanceMode === 'reduced') {
+                        this.setPerformanceMode('minimal');
                     }
                 }
-            });
+                
+                if (this.isMonitoring) {
+                    requestAnimationFrame(measureFPS);
+                }
+            };
             
-            // Check if long-task is supported before observing
-            if (PerformanceObserver.supportedEntryTypes.includes('long-task')) {
-                performanceObserver.observe({ entryTypes: ['long-task'] });
+            requestAnimationFrame(measureFPS);
+        }
+
+        setupIntersectionObserver() {
+            // Pause animations for elements not in viewport
+            if ('IntersectionObserver' in window) {
+                this.intersectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.remove('element-hidden');
+                            entry.target.classList.add('element-visible');
+                        } else {
+                            entry.target.classList.remove('element-visible');
+                            entry.target.classList.add('element-hidden');
+                        }
+                    });
+                }, {
+                    rootMargin: '50px',
+                    threshold: 0.1
+                });
             }
-        } catch (error) {
-            console.log('Long task monitoring not supported in this browser');
+        }
+
+        setupReducedMotionDetection() {
+            // Listen for reduced motion preference changes
+            const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            
+            const handleReducedMotion = (e) => {
+                if (e.matches) {
+                    this.setPerformanceMode('minimal');
+                    this.pauseAllAnimations();
+                }
+            };
+            
+            mediaQuery.addListener(handleReducedMotion);
+            handleReducedMotion(mediaQuery); // Check initial state
+        }
+
+        cacheAnimationElements() {
+            // Cache all animated elements for efficient control
+            this.animationElements = [
+                ...document.querySelectorAll('.geometric-shape'),
+                ...document.querySelectorAll('.particle'),
+                ...document.querySelectorAll('.energy-line')
+            ];
+            
+            // Set up intersection observer for cached elements
+            if (this.intersectionObserver) {
+                this.animationElements.forEach(element => {
+                    this.intersectionObserver.observe(element);
+                });
+            }
+        }
+
+        setPerformanceMode(mode) {
+            if (this.performanceMode === mode) return;
+            
+            this.performanceMode = mode;
+            document.body.classList.remove('performance-mode-normal', 'performance-mode-reduced', 'performance-mode-minimal');
+            document.body.classList.add(`performance-mode-${mode}`);
+            
+            console.log(`Performance mode changed to: ${mode}`);
+            
+            // Apply mode-specific optimizations
+            switch (mode) {
+                case 'minimal':
+                    this.pauseAllAnimations();
+                    this.disableBackdropFilters();
+                    break;
+                case 'reduced':
+                    this.reduceAnimations();
+                    this.reduceBackdropFilters();
+                    break;
+                case 'normal':
+                default:
+                    this.enableAllAnimations();
+                    break;
+            }
+        }
+
+        pauseAllAnimations() {
+            document.body.classList.add('animations-paused');
+        }
+
+        enableAllAnimations() {
+            document.body.classList.remove('animations-paused');
+        }
+
+        reduceAnimations() {
+            // Reduce animation complexity and frequency
+            this.animationElements.forEach((element, index) => {
+                if (index % 2 === 0) { // Hide every other element
+                    element.style.display = 'none';
+                }
+            });
+        }
+
+        disableBackdropFilters() {
+            const elementsWithBackdrop = document.querySelectorAll('[style*="backdrop-filter"], .language-selector, .main-header');
+            elementsWithBackdrop.forEach(element => {
+                element.style.backdropFilter = 'none';
+                element.style.webkitBackdropFilter = 'none';
+            });
+        }
+
+        reduceBackdropFilters() {
+            const elementsWithBackdrop = document.querySelectorAll('.language-selector, .main-header');
+            elementsWithBackdrop.forEach(element => {
+                element.style.backdropFilter = 'blur(3px)';
+                element.style.webkitBackdropFilter = 'blur(3px)';
+            });
+        }
+
+        degradePerformance() {
+            if (this.performanceMode === 'normal') {
+                this.setPerformanceMode('reduced');
+            } else if (this.performanceMode === 'reduced') {
+                this.setPerformanceMode('minimal');
+            }
+        }
+
+        startMonitoring() {
+            this.isMonitoring = true;
+        }
+
+        stopMonitoring() {
+            this.isMonitoring = false;
+            if (this.performanceObserver) {
+                this.performanceObserver.disconnect();
+            }
+            if (this.intersectionObserver) {
+                this.intersectionObserver.disconnect();
+            }
+        }
+
+        // Public API for manual control
+        getPerformanceMode() {
+            return this.performanceMode;
+        }
+
+        getCurrentFPS() {
+            return this.fps;
+        }
+
+        forcePerformanceMode(mode) {
+            this.setPerformanceMode(mode);
         }
     }
+
+    // Initialize Performance Manager
+    const performanceManager = new PerformanceManager();
 
     // Detect iOS device with better performance
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
@@ -47,13 +272,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         return domCache.get(selector);
     };
 
-    // Frame-timing aware task scheduler for 120 FPS
+    // Frame-timing aware task scheduler for 60+ FPS
     class FrameController {
         constructor() {
             this.rafId = null;
             this.tasks = new Set();
             this.isRunning = false;
-            this.frameDeadline = 8.33; // 120 FPS budget in ms
+            this.frameDeadline = 16.67; // 60 FPS budget in ms
         }
 
         schedule(task, priority = 'normal') {
@@ -177,6 +402,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.isIOS = isIOS;
     window.initializeWorker = initializeWorker;
     window.aiWorker = aiWorker;
+    window.performanceManager = performanceManager;
 
     // Utility functions for other modules
     window.coreUtils = {
@@ -186,8 +412,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         isIOS,
         initializeWorker,
         domCache,
-        elementObservers
+        elementObservers,
+        performanceManager
     };
 
-    console.log('Core utilities initialized and available globally');
+    console.log('Core utilities initialized with performance monitoring');
 });
